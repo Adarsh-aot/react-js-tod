@@ -3,6 +3,11 @@ import { FaCheckCircle, FaPen, FaTrash, FaCalendarAlt } from 'react-icons/fa';
 import './ListItem.css';
 
 const ListItem = ({ item, onComplete, onEdit, onDelete, onactive }) => {
+  const today = new Date();
+  const itemDate = new Date(item.date);
+  const isDateBeforeToday = itemDate < today;
+  const isDateAfterToday = itemDate > today;
+  
   return (
     <div className="card-horizontal" key={item.id}>
         {item.completed_task ? <img src='./src/assets/Group 1546.svg'
@@ -21,8 +26,13 @@ const ListItem = ({ item, onComplete, onEdit, onDelete, onactive }) => {
             {item.completed_task ? <div className="in"></div>  : <div className="ln"></div>  }
             </div>
       
+          
+        { item.completed_task ? 
+        <p><img src="./src/assets/calendar_month_black_24dp 2 (1).svg" alt="" /> {item.date}</p> :
+        <p>{isDateBeforeToday ? <p style={{color: 'red'}}><img src="./src/assets/calendar_month_black_24dp 2 (2).svg" alt="" /> { item.date }</p> : <p><img src="./src/assets/calendar_month_black_24dp 2 (1).svg" alt="" /> { item.date }</p> }</p> 
+        
+}
 
-        <p>{item.date}</p>
         <div className="date">
           
           

@@ -18,7 +18,7 @@ const useItems = () => {
     let updatedItems;
     if (id !== null) {
       updatedItems = items.map(item =>
-        item.id === id ? { ...item, content } : item
+        item.id === id ? { ...item, content  , date } : item
       );
     } else {
       const newItem = { id: items.length + 1, content, date ,  completed_task: false };
@@ -27,7 +27,7 @@ const useItems = () => {
     setItems(updatedItems);
     setFilteredItems(updatedItems);
     localStorage.setItem('items', JSON.stringify(updatedItems));
-    window.location.reload();
+    // window.location.reload();
   };
 
   const handleEditClick = (item) => {

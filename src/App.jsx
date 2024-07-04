@@ -60,8 +60,8 @@ const App = () => {
         <Sort onChange={handleSortChange} sortOrder={sortOrder} sortBy={sortBy} />
       </div>
 
-
-
+      
+      <h1>Active Components</h1>
       <List
         items={sortedItems}
         onComplete={completeItem}
@@ -69,10 +69,10 @@ const App = () => {
         onDelete={deleteItem}
         onactive={activeItem}
         onCompleted={false}
-        name="Active Components"
+        name=""
       />
       <div className="nav">
-        <h1>Inactive Components</h1>
+      <h1>Inactive Components</h1>
         <Button
           className="btn btn-primary"
           onClick={deleteCompletedTasks}
