@@ -41,3 +41,7 @@ text-align: left;
 .sort-order.asc {
   transform: rotate(180deg); /* Rotate indicator for ascending order */
 }
+
+.modal-footer data{
+  background-color: #999;
+}

@@ -24,6 +24,8 @@ const Modal = (props) => {
 
   const handleSaveClick = () => {
     if (props.onSave) {
+      setInputValue('');
+      
       props.onSave(inputValue, dateValue, props.itemToUpdate ? props.itemToUpdate.id : null);
     }
   };
@@ -44,6 +46,7 @@ const Modal = (props) => {
               onChange={handleInputChange}
               placeholder="Enter something"
             />
+            {/* <p>{itemToUpdate}</p> */}
             <input
               type="date"
               className="form-control mt-2"

@@ -129,3 +129,11 @@ background-color: green;
     display: flex;
     flex-direction: row;
 }
+
+
+
+.modal-footer{
+  justify-content: center;
+  background-color: yellowgreen;
+  
+}

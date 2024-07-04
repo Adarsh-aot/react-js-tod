@@ -1,33 +1,58 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const useItems = () => {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [itemToUpdate, setItemToUpdate] = useState(null);
+  const base = 'http://localhost:3000/todo';
 
   useEffect(() => {
-    const savedItems = localStorage.getItem('items');
-    if (savedItems) {
-      const parsedItems = JSON.parse(savedItems);
-      setItems(parsedItems);
-      setFilteredItems(parsedItems);
-    }
+    axios.get(base).then((response) => {
+      const savedItems = response.data;
+      setItems(savedItems);
+      setFilteredItems(savedItems);
+    });
   }, []);
 
-  const handleSaveContent = (content, date , id = null) => {
-    let updatedItems;
+  const createItem = (content, date) => {
+    const newItem = { content, date, completed_task: false };
+    axios.post(base, newItem)
+      .then((response) => {
+        const savedItem = response.data;
+        const updatedItems = [...items, savedItem];
+        setItems(updatedItems);
+        setFilteredItems(updatedItems);
+        localStorage.setItem('items', JSON.stringify(updatedItems));
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error("There was an error creating the item!", error);
+      });
+  };
+
+  const updateItem = (id, content, date) => {
+    const updatedItems = items.map(item =>
+      item.id === id ? { ...item, content, date } : item
+    );
+    axios.put(`${base}/${id}`, { id, content, date, completed_task: false })
+      .then(() => {
+        setItems(updatedItems);
+        setFilteredItems(updatedItems);
+        localStorage.setItem('items', JSON.stringify(updatedItems));
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error("There was an error updating the item!", error);
+      });
+  };
+
+  const handleSaveContent = (content, date, id = null) => {
     if (id !== null) {
-      updatedItems = items.map(item =>
-        item.id === id ? { ...item, content  , date } : item
-      );
+      updateItem(id, content, date);
     } else {
-      const newItem = { id: items.length + 1, content, date ,  completed_task: false };
-      updatedItems = [...items, newItem];
+      createItem(content, date);
     }
-    setItems(updatedItems);
-    setFilteredItems(updatedItems);
-    localStorage.setItem('items', JSON.stringify(updatedItems));
-    // window.location.reload();
   };
 
   const handleEditClick = (item) => {
@@ -35,40 +60,55 @@ const useItems = () => {
   };
 
   const deleteItem = (item) => {
-    const updatedItems = items.filter(i => i.id !== item.id);
-    setItems(updatedItems);
-    setFilteredItems(updatedItems);
-    localStorage.setItem('items', JSON.stringify(updatedItems));
+    axios.delete(`${base}/${item.id}`)
+      .then(() => {
+        const updatedItems = items.filter(i => i.id !== item.id);
+        setItems(updatedItems);
+        setFilteredItems(updatedItems);
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error("There was an error deleting the item!", error);
+      });
   };
 
   const completeItem = (item) => {
-    const updatedItems = items.map(it =>
-      it.id === item.id ? { ...it, completed_task: true } : it
-    );
-    setItems(updatedItems);
-    setFilteredItems(updatedItems);
-    localStorage.setItem('items', JSON.stringify(updatedItems));
+    axios.get(`${base}/completed/${item.id}`).then((response) => {
+      const savedItems = response.data;
+    setItems(savedItems);
+    setFilteredItems(savedItems);
+    localStorage.setItem('items', JSON.stringify(savedItems))
+    })
   };
 
   const activeItem = (item) => {
-    const updatedItems = items.map(it =>
-      it.id === item.id ? { ...it, completed_task: false } : it
-    );
-    setItems(updatedItems);
-    setFilteredItems(updatedItems);
-    localStorage.setItem('items', JSON.stringify(updatedItems));
+    axios.get(`${base}/completed/${item.id}`).then((response) => {
+      const savedItems = response.data;
+    setItems(savedItems);
+    setFilteredItems(savedItems);
+    localStorage.setItem('items', JSON.stringify(savedItems))
+    })
   };
 
   const deleteCompletedTasks = () => {
-    const updatedItems = items.filter(item => !item.completed_task);
-    setItems(updatedItems);
-    setFilteredItems(updatedItems);
-    localStorage.setItem('items', JSON.stringify(updatedItems));
+    axios.get(`${base}/clear`)
+      .then(() => {
+        const updatedItems = responce.data
+        setItems(updatedItems);
+        setFilteredItems(updatedItems);
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error("There was an error deleting the item!", error);
+      })
+      .finally(() => {
+        window.location.reload();
+      });
   };
 
   const handleSearch = (searchTerm) => {
     const lowercasedTerm = searchTerm.toLowerCase();
-    const filtered = items.filter(item => 
+    const filtered = items.filter(item =>
       item.content.toLowerCase().includes(lowercasedTerm)
     );
     setFilteredItems(filtered);
