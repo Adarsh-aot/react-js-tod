@@ -52,7 +52,7 @@ const App = () => {
           data-bs-target="#exampleModal"
           onClick={() => setItemToUpdate(null)}
         >
-          Open Modal
+          Add New Task
         </Button>
       </div>
       <div className="nav">
@@ -60,7 +60,7 @@ const App = () => {
         <Sort onChange={handleSortChange} sortOrder={sortOrder} sortBy={sortBy} />
       </div>
 
-      <h1>Active Components</h1>
+      <p>Active Components</p>
       <List
         items={sortedItems}
         onComplete={completeItem}
@@ -71,7 +71,7 @@ const App = () => {
         name=""
       />
       <div className="nav">
-        <h1>Inactive Components</h1>
+        <p>Inactive Components</p>
         <Button
           className="btn btn-primary"
           onClick={deleteCompletedTasks}

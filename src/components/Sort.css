@@ -1,0 +1,41 @@
+.sort{
+    width:160px;
+    height: 100px;
+    padding: 6px 0px 0px 0px;
+    gap: 10px;
+    border-radius: 4px 0px 0px 0px;
+    opacity: 0px;
+
+}
+
+option{
+    width:160px;
+height: 44px;
+/* padding: 6px 0px 0px 0px; */
+gap: 10px;
+border-radius: 4px 0px 0px 0px;
+opacity: 0px;
+
+}
+
+.form-control-value{
+    width: 578px;
+height: 44px;
+padding: 10px 14px 10px 14px;
+gap: 8px;
+border-radius: 8px 8px 8px 8px;
+border: 1px solid black;
+opacity: 0px;
+display: flex;
+justify-content: space-between;
+
+}
+
+input{
+    border:0px solid black;
+}
+
+
+input:focus-visible{
+    outline: none;
+}

@@ -44,14 +44,14 @@ const ListItem = ({ item, onComplete, onEdit, onDelete, onactive }) => {
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
-          <FaPen />
+          <img src="./src/assets/Group 817 (1).svg" alt="" />
         </button>
         <button
           className="btn btn-danger ms-2"
           data-bs-toggle="modal" 
           data-bs-target="#DeleteModal"
         >
-          <FaTrash />
+           <img src="./src/assets/Group (1).svg" alt="" />
         </button>
       </div>
 

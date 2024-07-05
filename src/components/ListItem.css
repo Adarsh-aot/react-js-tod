@@ -65,7 +65,14 @@
 
 
 
+p{
+  font-family: Montserrat;
+font-size: 18px;
+font-weight: 600;
+line-height: 21.94px;
+/* text-align: center; */
 
+}
 
 
 .nav{
@@ -136,4 +143,34 @@ background-color: green;
   justify-content: center;
   background-color: yellowgreen;
   
+}
+
+h1{
+  
+font-family: Montserrat;
+font-size: 24px;
+font-weight: 600;
+line-height: 32px;
+text-align: left;
+
+}
+
+
+
+img{
+  background-color: white;
+}
+
+
+button{
+  background-color: white;
+  border:white;
+}
+
+
+.card-horizontal .actions .btn {
+  background-color: white;
+  border: 0px white;
+  margin-left: 0.5rem;
+  color: #fff;
 }

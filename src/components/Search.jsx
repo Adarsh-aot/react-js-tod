@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Sort.css';
 
 const Search = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -10,14 +11,15 @@ const Search = ({ onSearch }) => {
   };
 
   return (
-    <div>
+    <div className='form-control-value'>
       <input
         type="text"
         value={searchTerm}
         onChange={handleChange}
         placeholder="Search..."
-        className='form-control'
+        
       />
+      <img src="./src/assets/Icon ionic-ios-search (1) 1 (1).svg" alt="" />
     </div>
   );
 };
