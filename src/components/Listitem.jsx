@@ -31,7 +31,7 @@ const ListItem = ({ item, onComplete, onEdit, onDelete, onactive }) => {
 
         {item.completed_task ? 
           <p><img src="./src/assets/calendar_month_black_24dp 2 (1).svg" alt="" /> {item.date}</p> :
-          <p>{isDateBeforeToday ? <p style={{color: 'red'}}><img src="./src/assets/calendar_month_black_24dp 2 (2).svg" alt="" /> {item.date}</p> : <p><img src="./src/assets/calendar_month_black_24dp 2 (1).svg" alt="" /> {item.date}</p>}</p>
+          <p>{isDateBeforeToday ? <div className="delay-date"><img  className="delay-img" src="./src/assets/calendar_month_black_24dp 2 (2).svg" alt="" /><p style={{color: 'red'}}> {item.date}</p> </div>: <p><img src="./src/assets/calendar_month_black_24dp 2 (1).svg" alt="" /> {item.date}</p>}</p>
         }
 
         <div className="date"></div>

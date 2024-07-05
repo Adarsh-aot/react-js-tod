@@ -168,9 +168,25 @@ button{
 }
 
 
-.card-horizontal .actions .btn {
+.card-horizontal .actions .btn , .btn:hover  , .btn:active {
   background-color: white;
   border: 0px white;
   margin-left: 0.5rem;
   color: #fff;
+}
+
+.btn:active {
+  background-color: white;
+  border: 0px white;
+}
+
+.delay-date{
+  background-color:#C035030F;
+  display: flex;
+  width:116px;
+}
+
+
+.delay-img{
+  background-color:#C035030F;
 }
