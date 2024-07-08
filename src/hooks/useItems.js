@@ -5,7 +5,8 @@ const useItems = () => {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [itemToUpdate, setItemToUpdate] = useState(null);
-  const base = 'http://localhost:3000/todo';
+  //const base = 'http://localhost:3000/todo';
+  const base = 'https://node-todo-2-0jl6.onrender.com/todo';
 
   useEffect(() => {
     axios.get(base).then((response) => {
